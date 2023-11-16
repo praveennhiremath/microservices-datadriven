@@ -48,7 +48,7 @@ resources:
     title: "Parse Server Options"
   - name: oci-stack-app-name
     src: "oci-stack-app-name.png"
-    title: "Compartment, Application and Editon"
+    title: "Compartment, Application and Edition"
   - name: ebaas-mp-listing
     src: "ebaas-mp-listing.png"
     title: "Marketplace Listing"
@@ -120,7 +120,7 @@ Oracle Backend for Spring Boot and Microservices setup installs the following co
 | Oracle Database Operator     | 1.0           | Helps reduce the time and complexity of deploying and managing Oracle databases.            |
 | Oracle Transaction Manager for Microservices | 22.3.2 | Manages distributed transactions to ensure consistency across Microservices.       |
 | Strimzi-Apache Kafka operator  | 0.36.1      | Manages Apache Kafka clusters.                                                              |
-| Apacha Kafka                 | 3.4.0 - 3.5.1 | Provides distributed event streaming.                                                       |
+| Apache Kafka                 | 3.4.0 - 3.5.1 | Provides distributed event streaming.                                                       |
 | Coherence                    | 3.2.11        | Provides in-memory data grid.                                                               |
 | Parse Server (optional)      | 6.3.0         | Provides backend services for mobile and web applications.                                  |
 | Parse Dashboard (optional)   | 5.2.0         | Provides web user interface for managing the Parse Server.                                  |
@@ -139,7 +139,7 @@ This video provides a quick overview of the setup process.
 Installing Oracle Backend for Spring Boot and Microservice takes approximately one hour to complete. The following steps are involved:
 
 - [Setup the OCI environment](#set-up-the-oci-environment)
-- [Setup of the Local Eenvironment](#set-up-the-local-machine)
+- [Setup of the Local Environment](#set-up-the-local-machine)
 - [Access environment variables from the OCI Console](#access-information-and-passwords-from-the-oci-console)
 
 ## Set Up the OCI Environment
@@ -175,7 +175,7 @@ To set up the OCI environment, process these steps:
    - `APISIX Administrator Password` (optional) : Leave blank to auto-generate.
    - `Grafana Administrator Password` (optional) : Leave blank to auto-generate.
    - `ORACTL Administrator Password` optional) : Leave blank to auto-generate. This is the password for the `obaas-admin` user.
-   - `ORACTL User Password` (optional) : Leave blank to aout-generate. This is the password for the `obaas-user` user.
+   - `ORACTL User Password` (optional) : Leave blank to auto-generate. This is the password for the `obaas-user` user.
 
       <!-- spellchecker-disable -->
       {{< img name="oci-stack-passwords" size="large" lazy=false >}}
@@ -187,7 +187,7 @@ To set up the OCI environment, process these steps:
    - `Server Master Key` (optional) : Leave blank to auto-generate.
    - `Enable Parse S3 Storage` : Check the checkbox to enable Parse Server S3 Adaptor and create a S3 compatible Object Storage Bucket.
    - `Dashboard Username` : The user name of the user to whom access to the dashboard is granted.
-   - `Dashboard Password` (optinal) : The password of the dashboard user (a minimum of 12 characters). Leave blank to aout-generate.
+   - `Dashboard Password` (optional) : The password of the dashboard user (a minimum of 12 characters). Leave blank to auto-generate.
 
      <!-- spellchecker-disable -->
      {{< img name="oci-stack-parse-options" size="large" lazy=false >}}
@@ -214,11 +214,11 @@ To set up the OCI environment, process these steps:
       {{< img name="oci-stack-node-pool" size="large" lazy=false >}}
       <!-- spellchecker-enable -->
 
-1. In the **Load Balanacers Options** section, fill in the following for the Load Balancers options:
+1. In the **Load Balancers Options** section, fill in the following for the Load Balancers options:
 
    - `Enable Public Load Balancer` : This option allows access to the load balancer from the internet (public IP). If not
       selected, access can only be from a private VCN.
-   - `Public Load Balancer Access Control` : Enter the CIDR block you want to give access to the Load Blanacer. Default (and not recommended) is `0.0.0.0/0`.
+   - `Public Load Balancer Access Control` : Enter the CIDR block you want to give access to the Load Balancer. Default (and not recommended) is `0.0.0.0/0`.
    - `Public Load Balancer Ports Exposed` : The ports exposed from the load balancer.
    - `Minimum bandwidth` : The minimum bandwidth that the load balancer can achieve.
    - `Maximum bandwidth` : The maximum bandwidth that the load balancer can achieve.
@@ -229,7 +229,7 @@ To set up the OCI environment, process these steps:
       {{< img name="oci-stack-lb-options" size="large" lazy=false >}}
       <!-- spellchecker-enable -->
 
-1. If you check the checkbox *Enable Vault in Production Mode* in the section **Vault Options** you will be installing HashiCorp in **Production** mode otherwise the HashiCorp Vault be installed in **Developement** mode.
+1. If you check the checkbox *Enable Vault in Production Mode* in the section **Vault Options** you will be installing HashiCorp in **Production** mode otherwise the HashiCorp Vault be installed in **Development** mode.
 
     Fill in the following Vault options. You have the option of creating a new OCI Vault or using an existing OCI Vault. The OCI Vault is only used in **Production** mode to auto-unseal the HashiCorp Vault (see documentation ...) Fill in the following information if you want to use an existing OCI Vault:
 
@@ -250,7 +250,7 @@ To set up the OCI environment, process these steps:
    - `Autonomous Database Network Access` : Choose the Autonomous Database network access. Choose between *SECURE_ACCESS* and *PRIVATE_ENDPOINT_ACCESS*. **NOTE:** This option currently cannot be changed later.
       - *SECURE_ACCESS* - Accessible from outside the Kubernetes Cluster.  Requires mTLS and can be restricted by IP or CIDR addresses.
       - *PRIVATE_ENDPOINT* - Accessible only from inside the Kubernetes Cluster or via a Bastion service.  Requires mTLS.
-   - `ADB Access Control` : Comma separated list of CIDR blocks from which the ADB can be accessed. This only applies if *SECURE_ACCESS* was choosen. Default (and not recommended) is `0.0.0.0/0`.
+   - `ADB Access Control` : Comma separated list of CIDR blocks from which the ADB can be accessed. This only applies if *SECURE_ACCESS* was chosen. Default (and not recommended) is `0.0.0.0/0`.
    - `Autonomous Database ECPU Core Count` : Choose how many ECPU cores will be elastically allocated.
    - `Allow Autonomous Database OCPU Auto Scaling` : Enable auto scaling for the ADB ECPU core count (x3 ADB ECPU).
    - `Autonomous Database Data Storage Size` : Choose ADB Database Data Storage Size in gigabytes.
@@ -294,7 +294,7 @@ To set up the OCI environment, process these steps:
     {{< img name="oci-stack-apply-logs" size="large" lazy=false >}}
     <!-- spellchecker-enable -->
 
-1. When the **Apply** job finsishes you can collect the OKE access information by clicking on **Outputs**.
+1. When the **Apply** job finishes you can collect the OKE access information by clicking on **Outputs**.
 
     <!-- spellchecker-disable -->
     {{< img name="oci-stack-outputs" size="large" lazy=false >}}
